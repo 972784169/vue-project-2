@@ -78,6 +78,8 @@
                 //console.log(res.data.data[0].uname);
                 if(res.data.code==1)
                 {
+                    //将用户名存到浏览器缓存
+                    localStorage.setItem("userid",res.data.data[0].uid);
                     this.$store.dispatch("loginUserName",res.data.data[0].uname);
                     console.log(uname);
                     this.$router.push({

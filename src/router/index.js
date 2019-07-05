@@ -14,37 +14,58 @@ export default new Router({
     {
       path: '/',
       name: 'GoodsList',
-      component: GoodsList
+      component: GoodsList,
+      meta:{
+        login_require: false
+      }
     },
     {
       path: '/LoginRegister',
       name: 'LoginRegister',
-      component: LoginRegister
+      component: LoginRegister,
+      meta:{
+        login_require: true
+      }
     },
     {
       path: '/GoodsList',
       name: 'GoodsList',
-      component: GoodsList
+      component: GoodsList,
+      meta:{
+        login_require: false
+      }
     },
     {
       path: '/Cart',
       name: 'Cart',
-      component: Cart
+      component: Cart,
+      meta:{
+        login_require: true
+      }
     },
     {
       path: '/Address',
       name: 'Address',
-      component: Address
+      component: Address,
+      meta:{
+        login_require: true
+      }
     },
     {
       path: '/OrderConfirm',
       name: 'OrderConfirm',
-      component: OrderConfirm
+      component: OrderConfirm,
+      meta:{
+        login_require: true
+      }
     },
     {
       path: '/OrderSuccess',
       name: 'OrderSuccess',
-      component: OrderSuccess
+      component: OrderSuccess,
+      meta:{
+        login_require: true
+      }
     }
   ]
 })

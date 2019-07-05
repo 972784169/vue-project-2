@@ -66,6 +66,8 @@
                   console.log(status);
                   if(status==2)
                   {
+                      //用户退出登陆删除凭证
+                      localStorage.removeItem("userid"),
                     this.$store.dispatch("loginUserName","");
                   }
                 })
@@ -77,22 +79,29 @@
         jumpCart(){
             let uname=this.username;
             console.log(uname);
-            this.$axios.post("/queryCart",this.$qs.stringify({uname}))
-              .then((res)=>{
-                if(res.data.status==1003)
-                {
-                  this.$router.push({path:"/Cart"})
-                }
-                else
-                {
+            if(localStorage.getItem("userid"))
+            {
+              this.$axios.post("/queryCart",this.$qs.stringify({uname}))
+                .then((res)=>{
+                  if(res.data.status==1003)
+                  {
+                    this.$router.push({path:"/Cart"})
+                  }
+                  else
+                  {
                     //用户购物车若无数据则给出提示前往商品页面进行购买
                     alert(res.data.msg);
-                }
-              })
-              .catch((err)=>{
-                console.log(err);
-              });
-            //this.$router.push({path:"/Cart"})
+                  }
+                })
+                .catch((err)=>{
+                  console.log(err);
+                });
+            }
+            else
+            {
+                alert("用户未登陆，请前往登陆页面进行登陆");
+            }
+
         }
       },
       filters:{
