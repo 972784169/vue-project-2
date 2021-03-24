@@ -31,26 +31,23 @@ new Vue({
   template: '<App/>'
 })
 router.beforeEach((to,from,next)=>{
+  if(to.path=="/LoginRegister"){
+      next();
+      return;
+  }
   let userid=localStorage.getItem("userid");
-  if(to.matched.some((item)=>{item.meta.login_require;}))
-  {
-    console.log(to.matched);
-
-    if(userid)
-    {
-      next();
+  if(to.meta.login_require){
+    if(userid){
+        next();
     }
-    else if(to.path=="/LoginRegister")
-    {
-      next();
-    }
-    else if(to.path=="/Cart")
-    {
-      next({path:"/Cart"});
+    else{
+      next({path:'/LoginRegister',query:{
+          redirect:to.path
+      }})
     }
   }
-  else
-  {
+  else{
     next();
   }
+  
 })
