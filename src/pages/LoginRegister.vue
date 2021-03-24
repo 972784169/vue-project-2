@@ -81,9 +81,10 @@
                     //将用户名存到浏览器缓存
                     localStorage.setItem("userid",res.data.data[0].uid);
                     this.$store.dispatch("loginUserName",res.data.data[0].uname);
+                    let path=this.$router.query.redirect;
                     console.log(uname);
-                    this.$router.push({
-                      path:"/GoodsList"
+                    this.$router.replace({
+                      path:path=='undefined'?"/GoodsList":path
                         });
                 }
                 else
